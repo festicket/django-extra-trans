@@ -113,6 +113,10 @@ LANGUAGES = (
     ('fr', _('French')),
 )
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'example', 'locales'),
+]
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True

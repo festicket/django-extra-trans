@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if include_default_language %}
+    {% language default_language %}
+        {{ prefix|default:"&nbsp;|&nbsp;"|safe }}
+		{% if text %}
+            {% trans text %}
+        {% elif date_ %}
+            {{ date_|date:"SHORT_DATETIME_FORMAT" }}
+		{% endif %}	
+        {{ suffix }}
+	{% endlanguage %}
+{% endif %}

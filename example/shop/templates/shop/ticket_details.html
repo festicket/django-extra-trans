@@ -14,24 +14,13 @@
 </head>
 <body>
     <h1>
-        {% trans "Order" %} 
-        {% if include_default_language %}
-            {% language default_language %}
-                &nbsp;|&nbsp;{% trans "Order" %}
-            {% endlanguage %} 
-        {% endif %}
+        {% trans "Order" %}
+        {% include "include/default_language.html" with text="Order" %}
         #{{ order.public_id }}
     </h1>
     <p>
         {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
-        {% if include_default_language %}
-            {% language default_language %}
-                &nbsp;|&nbsp;
-                <span class="secondary">
-                    {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
-                </span>
-            {% endlanguage %}
-        {% endif %}
+        {% include "include/default_language.html" with date_=order.date_created prefix="&nbsp;|&nbsp;<span class='secondary'>" suffix="</span>" %}
     </p>
 </body>
 </html>
