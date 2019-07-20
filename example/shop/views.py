@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.utils import translation
+from django.conf import settings
 
 from shop.models import Order, hashids
 
@@ -19,4 +20,6 @@ def ticket_details(request, order_public_id):
     with translation.override(order.language):
         return render(request, 'shop/ticket_details.html', context={
             'order': order,
+            'include_default_language': order.language != settings.LANGUAGE_CODE,
+            'default_language': settings.LANGUAGE_CODE,
         })

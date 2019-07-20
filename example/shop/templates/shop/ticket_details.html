@@ -6,11 +6,32 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Ticket #{{ order.public_id }}</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        .secondary {
+            color: #aeaeae;
+        }
+    </style>
 </head>
 <body>
-    <h1>{% trans "Order" %} #{{ order.public_id }}</h1>
+    <h1>
+        {% trans "Order" %} 
+        {% if include_default_language %}
+            {% language default_language %}
+                &nbsp;|&nbsp;{% trans "Order" %}
+            {% endlanguage %} 
+        {% endif %}
+        #{{ order.public_id }}
+    </h1>
     <p>
         {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
+        {% if include_default_language %}
+            {% language default_language %}
+                &nbsp;|&nbsp;
+                <span class="secondary">
+                    {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
+                </span>
+            {% endlanguage %}
+        {% endif %}
     </p>
 </body>
 </html>
