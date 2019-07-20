@@ -14,21 +14,11 @@
 </head>
 <body>
     <h1>
-        {% if_not_default_language %}
-            {% trans "Order" %}&nbsp;|&nbsp;
-        {% end %}
-        {% trans "Order" %}
-        #{{ order.public_id }}
+        {% with_default_language %}{% trans "Order" %}{% end %} #{{ order.public_id }}
     </h1>
     <p>
-        {% if_not_default_language %}
+        {% with_default_language "&nbsp;|&nbsp;<span class='secondary'>" </span> %}
             {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
-            &nbsp;|&nbsp;
-            <span class="secondary">
-        {% end %}
-        {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
-        {% if_not_default_language %}
-            </span> 
         {% end %}
     </p>
 </body>

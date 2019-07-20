@@ -19,8 +19,7 @@ def ticket_details(request, order_public_id):
 
     order = get_object_or_404(Order, pk=order_pk[0])
 
-    with translation.override(settings.LANGUAGE_CODE):
+    with translation.override(order.language):
         return render(request, 'shop/ticket_details.html', context={
             'order': order,
-            'current_language': order.language,
         })
