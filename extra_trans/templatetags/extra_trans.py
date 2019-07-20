@@ -1,3 +1,5 @@
+from itertools import zip_longest
+
 from django import template
 from django.template import TemplateSyntaxError, Node
 from django.templatetags.i18n import LanguageNode
@@ -40,15 +42,9 @@ def with_default_language(parser, token):
     if len(args) > 2:
         raise TemplateSyntaxError(f'{name}: too many arguments: {args}')
 
-    try:
-        prefix = args[0]
-    except IndexError:
-        prefix = '&nbsp;|&nbsp;'
-
-    try:
-        suffix = args[1]
-    except IndexError:
-        suffix = ''
+    # Unpacking arguments given or use defaults for them
+    default_args = ['&nbsp;|&nbsp;', '']
+    prefix, suffix = (r[0] or r[1] for r in zip_longest(args, default_args))
 
     nodelist = parser.parse(('end',))
     parser.delete_first_token()
