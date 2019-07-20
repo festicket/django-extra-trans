@@ -1,0 +1,16 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ticket #{{ order.public_id }}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <h1>{% trans "Order" %} #{{ order.public_id }}</h1>
+    <p>
+        {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
+    </p>
+</body>
+</html>
