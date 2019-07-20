@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n extra_trans %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,13 +14,22 @@
 </head>
 <body>
     <h1>
+        {% if_not_default_language %}
+            {% trans "Order" %}&nbsp;|&nbsp;
+        {% end %}
         {% trans "Order" %}
-        {% include "include/default_language.html" with text="Order" %}
         #{{ order.public_id }}
     </h1>
     <p>
+        {% if_not_default_language %}
+            {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
+            &nbsp;|&nbsp;
+            <span class="secondary">
+        {% end %}
         {{ order.date_created|date:"SHORT_DATETIME_FORMAT" }}
-        {% include "include/default_language.html" with date_=order.date_created prefix="&nbsp;|&nbsp;<span class='secondary'>" suffix="</span>" %}
+        {% if_not_default_language %}
+            </span> 
+        {% end %}
     </p>
 </body>
 </html>

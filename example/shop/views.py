@@ -16,10 +16,11 @@ def ticket_details(request, order_public_id):
     order_pk = hashids.decode(order_public_id)
     if not order_pk:
         raise Http404
+
     order = get_object_or_404(Order, pk=order_pk[0])
-    with translation.override(order.language):
+
+    with translation.override(settings.LANGUAGE_CODE):
         return render(request, 'shop/ticket_details.html', context={
             'order': order,
-            'include_default_language': order.language != settings.LANGUAGE_CODE,
-            'default_language': settings.LANGUAGE_CODE,
+            'current_language': order.language,
         })
