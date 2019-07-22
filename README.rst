@@ -18,10 +18,10 @@ To run the demo project:
    python manage.py runserver
 
 
-What inside
-===========
+What's inside
+=============
 
-The example project is a fake kind of ticketing application to illustrate usage of ``{% with_default_language %}``` template tag. It provides simplest `Order` model to hold various information about the purchase made by a user which then will be used to render tickets.
+The example project is a fake kind of ticketing application to illustrate the usage of ``{% with_default_language %}``` template tag. It provides the simplest `Order` model to hold various information about the purchase made by a user which then will be used to render tickets.
 
 It also used to run tests which can be run via:
 
